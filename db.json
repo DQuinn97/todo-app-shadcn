@@ -2,99 +2,143 @@
   "todos": [
     {
       "id": "1",
-      "text": "Learn React",
-      "completed": true,
-      "category": "Work"
+      "text": "Buy milk",
+      "completed": false,
+      "category": "Shopping",
+      "description": "Pick up 2% milk from the store"
     },
     {
       "id": "2",
-      "text": "Build a todo app",
-      "completed": false,
-      "category": "Work"
+      "text": "Walk the dog",
+      "completed": true,
+      "category": "Personal",
+      "description": "Take dog for a 15 minute walk"
     },
     {
       "id": "3",
-      "text": "Go for a run",
+      "text": "Go to gym",
       "completed": false,
-      "category": "Personal"
+      "category": "Health",
+      "description": "Work out at the gym for an hour"
     },
     {
       "id": "4",
-      "text": "Read a book",
-      "completed": false,
-      "category": "Personal"
+      "text": "Watch movie",
+      "completed": true,
+      "category": "Personal",
+      "description": "Watch a new movie"
     },
     {
       "id": "5",
-      "text": "Buy groceries",
+      "text": "Read a book",
       "completed": false,
-      "category": "Shopping"
+      "category": "Learning",
+      "description": "Read 50 pages of a book"
     },
     {
       "id": "6",
-      "text": "Prepare presentation for client meeting",
-      "completed": false,
-      "category": "Work"
+      "text": "Clean room",
+      "completed": true,
+      "category": "Personal",
+      "description": "Clean room for an hour"
     },
     {
       "id": "7",
-      "text": "Review project timeline",
-      "completed": true,
-      "category": "Work"
+      "text": "Finish project",
+      "completed": false,
+      "category": "Work",
+      "description": "Finish a project at work"
     },
     {
       "id": "8",
       "text": "Update documentation",
       "completed": false,
-      "category": "Work"
+      "category": "Work",
+      "description": "Update documentation for a project"
     },
     {
       "id": "9",
       "text": "Fix bug in login component",
       "completed": true,
-      "category": "Work"
+      "category": "Work",
+      "description": "Fix a bug in the login component"
     },
     {
       "id": "10",
       "text": "Attend team standup",
       "completed": false,
-      "category": "Work"
+      "category": "Work",
+      "description": "Attend a team standup meeting"
     },
     {
       "id": "18",
       "text": "Call mom",
       "completed": true,
-      "category": "Personal"
+      "category": "Personal",
+      "description": "Call mom to catch up"
     },
     {
       "id": "19",
       "text": "Schedule dentist appointment",
       "completed": false,
-      "category": "Personal"
+      "category": "Personal",
+      "description": "Schedule a dentist appointment"
     },
     {
       "id": "39",
       "text": "30 minute workout",
       "completed": false,
-      "category": "Health"
+      "category": "Health",
+      "description": "Work out for 30 minutes"
     },
     {
       "id": "40",
       "text": "Drink 8 glasses of water",
       "completed": true,
-      "category": "Health"
+      "category": "Health",
+      "description": "Drink 8 glasses of water"
     },
     {
       "id": "47",
       "text": "Complete online course module",
       "completed": false,
-      "category": "Learning"
+      "category": "Learning",
+      "description": "Complete an online course module"
     },
     {
       "id": "48",
       "text": "Read chapter of technical book",
       "completed": true,
-      "category": "Learning"
+      "category": "Learning",
+      "description": "Read a chapter of a technical book"
+    },
+    {
+      "id": "49",
+      "text": "Lorem",
+      "completed": false,
+      "category": "Learning",
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dignissimos, harum? In, repellendus provident. Quia voluptatibus, fuga placeat illo quasi dolorum quos hic nemo nihil officia odit dolor. Temporibus, similique alias culpa quo omnis labore quae repellendus, molestiae fuga ex earum, aliquam voluptate molestias voluptatibus illo deserunt delectus nobis nulla quaerat!"
+    },
+    {
+      "id": "f513",
+      "text": "test",
+      "completed": false,
+      "category": "Health",
+      "description": ""
+    },
+    {
+      "id": "689b",
+      "text": "t",
+      "completed": false,
+      "category": "",
+      "description": ""
+    },
+    {
+      "id": "84d0",
+      "text": "t",
+      "completed": false,
+      "category": "",
+      "description": ""
     }
   ],
   "categories": [

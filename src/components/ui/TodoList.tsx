@@ -1,5 +1,5 @@
 import { Category, Todo } from "@/lib/types";
-import TodoItem from "./TodoItem";
+import TodoItem from "@/components/ui/TodoItem";
 
 const TodoList = ({
   todos,

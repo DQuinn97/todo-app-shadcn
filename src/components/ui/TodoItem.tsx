@@ -7,6 +7,7 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import { ChevronDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const TodoItem = ({ todo, category }: { todo: Todo; category: Category }) => {
   const style = {
@@ -19,22 +20,28 @@ const TodoItem = ({ todo, category }: { todo: Todo; category: Category }) => {
       <Collapsible className="w-full">
         <div className="flex w-full items-center gap-2">
           <Checkbox className="mr-2" />
-          <CollapsibleTrigger className="line-clamp-1 flex w-full gap-2">
+          <CollapsibleTrigger className="OpenTodo line-clamp-1 flex w-full gap-2">
             <div className="mr-auto line-clamp-1 text-left">{todo.text}</div>
-            <Badge className="ml-auto" style={style}>
-              {category.name}
-            </Badge>
-            <span>
+            {todo.category && (
+              <Badge className="ml-auto" style={style}>
+                {category.name}
+              </Badge>
+            )}
+            <span className="OpenTodoIcon flex items-center justify-center">
               <ChevronDown size={16} />
             </span>
           </CollapsibleTrigger>
         </div>
-        <CollapsibleContent>
-          {todo?.description || (
-            <i className="italic opacity-50">No description...</i>
-          )}
+        <CollapsibleContent className="mt-2 flex gap-2 border-t-1 pt-2 pl-4">
+          <div>&gt;</div>
+          <div>
+            {todo?.description || (
+              <i className="italic opacity-50">No description...</i>
+            )}
+          </div>
         </CollapsibleContent>
       </Collapsible>
+      <Button variant="ghost"></Button>
     </li>
   );
 };

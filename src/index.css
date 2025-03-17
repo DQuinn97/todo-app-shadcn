@@ -119,3 +119,8 @@
     @apply bg-background text-foreground;
   }
 }
+@layer components {
+}
+.OpenTodo[data-state="open"] > .OpenTodoIcon {
+  @apply rotate-180;
+}
