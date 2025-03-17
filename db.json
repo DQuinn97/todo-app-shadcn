@@ -1,0 +1,122 @@
+{
+  "todos": [
+    {
+      "id": "1",
+      "text": "Learn React",
+      "completed": true,
+      "category": "Work"
+    },
+    {
+      "id": "2",
+      "text": "Build a todo app",
+      "completed": false,
+      "category": "Work"
+    },
+    {
+      "id": "3",
+      "text": "Go for a run",
+      "completed": false,
+      "category": "Personal"
+    },
+    {
+      "id": "4",
+      "text": "Read a book",
+      "completed": false,
+      "category": "Personal"
+    },
+    {
+      "id": "5",
+      "text": "Buy groceries",
+      "completed": false,
+      "category": "Shopping"
+    },
+    {
+      "id": "6",
+      "text": "Prepare presentation for client meeting",
+      "completed": false,
+      "category": "Work"
+    },
+    {
+      "id": "7",
+      "text": "Review project timeline",
+      "completed": true,
+      "category": "Work"
+    },
+    {
+      "id": "8",
+      "text": "Update documentation",
+      "completed": false,
+      "category": "Work"
+    },
+    {
+      "id": "9",
+      "text": "Fix bug in login component",
+      "completed": true,
+      "category": "Work"
+    },
+    {
+      "id": "10",
+      "text": "Attend team standup",
+      "completed": false,
+      "category": "Work"
+    },
+    {
+      "id": "18",
+      "text": "Call mom",
+      "completed": true,
+      "category": "Personal"
+    },
+    {
+      "id": "19",
+      "text": "Schedule dentist appointment",
+      "completed": false,
+      "category": "Personal"
+    },
+    {
+      "id": "39",
+      "text": "30 minute workout",
+      "completed": false,
+      "category": "Health"
+    },
+    {
+      "id": "40",
+      "text": "Drink 8 glasses of water",
+      "completed": true,
+      "category": "Health"
+    },
+    {
+      "id": "47",
+      "text": "Complete online course module",
+      "completed": false,
+      "category": "Learning"
+    },
+    {
+      "id": "48",
+      "text": "Read chapter of technical book",
+      "completed": true,
+      "category": "Learning"
+    }
+  ],
+  "categories": [
+    {
+      "name": "Work",
+      "color": "#f59e0b"
+    },
+    {
+      "name": "Personal",
+      "color": "#ef4444"
+    },
+    {
+      "name": "Shopping",
+      "color": "#3b82f6"
+    },
+    {
+      "name": "Health",
+      "color": "#10b981"
+    },
+    {
+      "name": "Learning",
+      "color": "#8b5cf6"
+    }
+  ]
+}
