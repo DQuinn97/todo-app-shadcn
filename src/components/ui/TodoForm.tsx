@@ -2,6 +2,7 @@ import { Input } from "@/components/ui/input";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+
 import {
   Select,
   SelectContent,
@@ -12,15 +13,15 @@ import {
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Category } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import { useAddTodoMutation } from "@/store/todoAPI";
+import { BaseSyntheticEvent } from "react";
+import { AnyARecord } from "node:dns";
 
 const formSchema = z.object({
   text: z.string().min(1, "Can't add empty todo"),
@@ -39,7 +40,8 @@ const TodoForm = ({ categories }: { categories: Category[] }) => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(values: z.infer<typeof formSchema>, event: any) {
+    event.preventDefault();
     addTodo(values);
     form.reset();
   }
