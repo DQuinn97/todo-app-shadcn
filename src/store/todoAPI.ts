@@ -1,26 +1,26 @@
-import { type Todo } from "@/lib/types";
+import { Category, type Todo } from "@/lib/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const todosAPI = createApi({
   tagTypes: ["Todos"],
   reducerPath: "todosAPI",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3000/todos",
+    baseUrl: "http://localhost:3000",
   }),
   endpoints: (builder) => ({
     getTodos: builder.query<Todo[], void>({
-      query: () => `/`,
+      query: () => `/todos`,
       providesTags: ["Todos"],
     }),
     getTodoById: builder.query<Todo, Todo["id"]>({
-      query: (id) => `/${id}`,
+      query: (id) => `/todos/${id}`,
     }),
     addTodo: builder.mutation<
       Todo,
       Pick<Todo, "text" | "category" | "description">
     >({
       query: ({ text, category, description }) => ({
-        url: "/",
+        url: "/todos",
         method: "POST",
         body: { text, completed: false, category, description },
       }),
@@ -28,7 +28,7 @@ const todosAPI = createApi({
     }),
     toggleTodo: builder.mutation<Todo, Pick<Todo, "completed" | "id">>({
       query: ({ id, completed }) => ({
-        url: `/${id}`,
+        url: `/todos/${id}`,
         method: "PATCH",
         body: { completed },
       }),
@@ -36,10 +36,13 @@ const todosAPI = createApi({
     }),
     removeTodo: builder.mutation<Todo, Todo["id"]>({
       query: (id) => ({
-        url: `/${id}`,
+        url: `/todos/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["Todos"],
+    }),
+    getCategories: builder.query<Category[], void>({
+      query: () => `/categories`,
     }),
   }),
 });
@@ -52,4 +55,5 @@ export const {
   useAddTodoMutation,
   useToggleTodoMutation,
   useRemoveTodoMutation,
+  useGetCategoriesQuery,
 } = todosAPI;
