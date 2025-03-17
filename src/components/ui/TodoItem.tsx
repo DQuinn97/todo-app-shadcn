@@ -33,10 +33,14 @@ const TodoItem = ({ todo, category }: { todo: Todo; category: Category }) => {
               <ChevronDown size={16} />
             </span>
           </CollapsibleTrigger>
-          <Button variant="ghost">
+          <Button variant="ghost" className="hover:cursor-pointer">
             <PenIcon />
           </Button>
-          <Button variant="ghost" onClick={() => removeTodo(todo.id)}>
+          <Button
+            variant="ghost"
+            onClick={() => removeTodo(todo.id)}
+            className="hover:cursor-pointer"
+          >
             <CrossIcon />
           </Button>
         </div>

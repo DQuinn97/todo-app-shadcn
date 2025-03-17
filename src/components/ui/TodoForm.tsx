@@ -20,8 +20,6 @@ import {
 import { Category } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import { useAddTodoMutation } from "@/store/todoAPI";
-import { BaseSyntheticEvent } from "react";
-import { AnyARecord } from "node:dns";
 
 const formSchema = z.object({
   text: z.string().min(1, "Can't add empty todo"),
@@ -71,7 +69,7 @@ const TodoForm = ({ categories }: { categories: Category[] }) => {
                   defaultValue={field.value}
                   onValueChange={field.onChange}
                 >
-                  <SelectTrigger>
+                  <SelectTrigger className="hover:cursor-pointer">
                     <SelectValue placeholder="Category" />
                   </SelectTrigger>
                   <SelectContent>
@@ -87,7 +85,7 @@ const TodoForm = ({ categories }: { categories: Category[] }) => {
             </FormItem>
           )}
         />
-        <Button type="submit">
+        <Button type="submit" className="hover:cursor-pointer">
           <span className="translate-y-[-2px] pr-2 text-xl font-bold">+</span>{" "}
           Add
         </Button>
