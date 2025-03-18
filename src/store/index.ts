@@ -1,8 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import todosAPI from "./todoAPI";
+import filterReducer from "./filterSlice";
 
 const myStore = configureStore({
-  reducer: { [todosAPI.reducerPath]: todosAPI.reducer },
+  reducer: {
+    filterSlice: filterReducer,
+    [todosAPI.reducerPath]: todosAPI.reducer,
+  },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(todosAPI.middleware),
 });

@@ -1,6 +1,12 @@
-import { z } from "zod";
+import { set, z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm, useWatch } from "react-hook-form";
+import { useForm } from "react-hook-form";
+import {
+  selectFilters,
+  setCategoryFilter,
+  setStatusFilter,
+} from "@/store/filterSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   Select,
@@ -24,76 +30,48 @@ const formSchema = z.object({
 });
 
 const FilterForm = ({ categories }: { categories: Category[] }) => {
+  const filters = useSelector(selectFilters);
+  const dispatch = useDispatch();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      categoryFilter: "All",
-      statusFilter: "All",
+      categoryFilter: filters.categoryFilter || "All",
+      statusFilter: filters.statusFilter || "All",
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>, event: any) {
-    event.preventDefault();
-    console.log("test");
-    form.reset();
-  }
-
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="mb-5 flex gap-2">
-        <FormField
-          control={form.control}
-          name="categoryFilter"
-          render={({ field }) => (
-            <FormItem>
-              <FormControl>
-                <Select
-                  defaultValue={field.value}
-                  onValueChange={field.onChange}
-                >
-                  <SelectTrigger className="hover:cursor-pointer">
-                    <SelectValue placeholder="All Categories" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value={"All"}>All Categories</SelectItem>
-                    {categories?.map((category) => (
-                      <SelectItem key={category.name} value={category.name}>
-                        {category.name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="statusFilter"
-          render={({ field }) => (
-            <FormItem>
-              <FormControl>
-                <Select
-                  defaultValue={field.value}
-                  onValueChange={field.onChange}
-                >
-                  <SelectTrigger className="hover:cursor-pointer">
-                    <SelectValue placeholder="All Status" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value={"All"}>All Status</SelectItem>
-                    <SelectItem value={"Done"}>Done</SelectItem>
-                    <SelectItem value={"Not done"}>Not done</SelectItem>
-                  </SelectContent>
-                </Select>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-      </form>
-    </Form>
+    <div className="flex gap-2">
+      <Select
+        defaultValue={filters.categoryFilter}
+        onValueChange={(value) => dispatch(setCategoryFilter(value))}
+      >
+        <SelectTrigger className="hover:cursor-pointer">
+          <SelectValue placeholder="All Categories" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value={"All"}>All Categories</SelectItem>
+          {categories?.map((category) => (
+            <SelectItem key={category.name} value={category.name}>
+              {category.name}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+      <Select
+        defaultValue={filters.statusFilter}
+        onValueChange={(value) => dispatch(setStatusFilter(value))}
+      >
+        <SelectTrigger className="hover:cursor-pointer">
+          <SelectValue placeholder="All Status" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value={"All"}>All Status</SelectItem>
+          <SelectItem value={"Done"}>Done</SelectItem>
+          <SelectItem value={"Not done"}>Not done</SelectItem>
+        </SelectContent>
+      </Select>
+    </div>
   );
 };
 export default FilterForm;
