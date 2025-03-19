@@ -18,7 +18,7 @@ const TodoItem = ({ todo, category }: { todo: Todo; category: Category }) => {
     backgroundColor: category.color + "77",
     color: category.color,
   };
-  let li_class = todo.completed ? "bg-muted line-through" : "";
+  let li_class = todo.completed ? "bg-muted" : "";
   let text_class = todo.completed ? "line-through text-gray-400" : "";
   return (
     <li
@@ -38,8 +38,10 @@ const TodoItem = ({ todo, category }: { todo: Todo; category: Category }) => {
             checked={todo.completed}
           />
           <CollapsibleTrigger className="OpenTodo line-clamp-1 flex w-full gap-2">
-            <div className={cn("mr-auto line-clamp-1 text-left", text_class)}>
-              {todo.text}
+            <div className="mr-auto line-clamp-1 text-left">
+              <span className={cn("line-clamp-1", text_class)}>
+                {todo.text}
+              </span>
             </div>
             {todo.category && (
               <Badge className="ml-auto" style={style}>
