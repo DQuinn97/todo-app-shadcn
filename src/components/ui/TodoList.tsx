@@ -13,16 +13,7 @@ const TodoList = ({
     <>
       <ul className="mt-5 flex flex-col gap-2">
         {todoResponse?.data.map((todo) => (
-          <TodoItem
-            key={todo.id}
-            todo={todo}
-            category={
-              categories?.find((c) => c.name === todo.category) || {
-                name: "",
-                color: "",
-              }
-            }
-          />
+          <TodoItem key={todo.id} todo={todo} categories={categories} />
         ))}
       </ul>
       <Pager todoResponse={todoResponse} />

@@ -15,7 +15,7 @@ function App() {
 
   return (
     <>
-      <TodoForm categories={categories as Category[]} />
+      <TodoForm categories={categories as Category[]} todo={undefined} />
       <TodoFilter categories={categories as Category[]} />
       {todoResponse && todoResponse.data && (
         <TodoList

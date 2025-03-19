@@ -17,7 +17,7 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
-import { Category } from "@/lib/types";
+import { Category, Todo } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import { useAddTodoMutation } from "@/store/todoAPI";
 
@@ -27,20 +27,31 @@ const formSchema = z.object({
   description: z.string(),
 });
 
-const TodoForm = ({ categories }: { categories: Category[] }) => {
+const TodoForm = ({
+  categories,
+  todo = undefined,
+}: {
+  todo: Todo | undefined;
+  categories: Category[];
+}) => {
   const [addTodo] = useAddTodoMutation();
+  const [updateTodo] = useAddTodoMutation();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      text: "",
-      category: "",
-      description: "",
+      text: todo?.text || "",
+      category: todo?.category || "",
+      description: todo?.description || "",
     },
   });
 
   function onSubmit(values: z.infer<typeof formSchema>, event: any) {
     event.preventDefault();
-    addTodo(values);
+    if (todo) {
+      updateTodo(values);
+    } else {
+      addTodo(values);
+    }
     form.reset();
     form.setValue("category", "");
   }
@@ -88,9 +99,31 @@ const TodoForm = ({ categories }: { categories: Category[] }) => {
           )}
         />
         <Button type="submit" className="hover:cursor-pointer">
-          <span className="translate-y-[-2px] pr-2 text-xl font-bold">+</span>{" "}
-          Add
+          {todo ? (
+            "Save changes"
+          ) : (
+            <>
+              <span className="translate-y-[-2px] pr-2 text-xl font-bold">
+                +
+              </span>{" "}
+              Add
+            </>
+          )}
         </Button>
+        {todo && (
+          <FormField
+            control={form.control}
+            name="description"
+            render={({ field }) => (
+              <FormItem className="flex-1">
+                <FormControl>
+                  <textarea {...field}>{todo.description}</textarea>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        )}
       </form>
     </Form>
   );

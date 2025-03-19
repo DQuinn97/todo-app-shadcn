@@ -118,6 +118,20 @@
       "completed": false,
       "category": "Learning",
       "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dignissimos, harum? In, repellendus provident. Quia voluptatibus, fuga placeat illo quasi dolorum quos hic nemo nihil officia odit dolor. Temporibus, similique alias culpa quo omnis labore quae repellendus, molestiae fuga ex earum, aliquam voluptate molestias voluptatibus illo deserunt delectus nobis nulla quaerat!"
+    },
+    {
+      "id": "2cf6",
+      "text": "adada",
+      "completed": false,
+      "category": "Shopping",
+      "description": ""
+    },
+    {
+      "id": "dd3d",
+      "text": "adadaadad",
+      "completed": false,
+      "category": "Work",
+      "description": ""
     }
   ],
   "categories": [
