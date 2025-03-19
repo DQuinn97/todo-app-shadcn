@@ -8,8 +8,17 @@ const todosAPI = createApi({
     baseUrl: "http://localhost:3000",
   }),
   endpoints: (builder) => ({
-    getTodos: builder.query<Todo[], void>({
-      query: () => `/todos`,
+    getTodos: builder.query<
+      Todo[],
+      {
+        categoryFilter?: string;
+        statusFilter?: string;
+        page?: number;
+        amount?: number;
+      }
+    >({
+      query: ({ categoryFilter, statusFilter, page, amount }) =>
+        `/todos?${categoryFilter ? `category=${categoryFilter}&` : ""}${statusFilter ? `completed=${statusFilter == "Done" ? true : false}&` : ""}${page ? `_page=${page}&` : ""}${amount ? `_per_page=${amount}` : ""}`,
       providesTags: ["Todos"],
     }),
     getTodoById: builder.query<Todo, Todo["id"]>({
@@ -44,6 +53,10 @@ const todosAPI = createApi({
     getCategories: builder.query<Category[], void>({
       query: () => `/categories`,
     }),
+    getTodoCount: builder.query<number, void>({
+      query: () => `/todos`,
+      transformResponse: (response: Todo[]) => response.length,
+    }),
   }),
 });
 
@@ -56,4 +69,5 @@ export const {
   useToggleTodoMutation,
   useRemoveTodoMutation,
   useGetCategoriesQuery,
+  useGetTodoCountQuery,
 } = todosAPI;

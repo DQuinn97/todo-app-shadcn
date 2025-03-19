@@ -6,7 +6,7 @@ import TodoForm from "@/components/ui/TodoForm";
 import TodoFilter from "@/components/ui/FilterForm";
 
 function App() {
-  const { data: todos } = useGetTodosQuery();
+  const { data: todos } = useGetTodosQuery({});
   const { data: categories } = useGetCategoriesQuery();
   return (
     <>

@@ -2,7 +2,7 @@ import { set, z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import {
-  selectFilters,
+  getFilters,
   setCategoryFilter,
   setStatusFilter,
 } from "@/store/filterSlice";
@@ -30,7 +30,7 @@ const formSchema = z.object({
 });
 
 const FilterForm = ({ categories }: { categories: Category[] }) => {
-  const filters = useSelector(selectFilters);
+  const filters = useSelector(getFilters);
   const dispatch = useDispatch();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),

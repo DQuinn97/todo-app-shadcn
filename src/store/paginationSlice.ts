@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { useGetTodosQuery } from "./todoAPI";
-const { data: todos } = useGetTodosQuery();
+const { data: todos } = useGetTodosQuery({});
 
 const filterSlice = createSlice({
   name: "filter",
