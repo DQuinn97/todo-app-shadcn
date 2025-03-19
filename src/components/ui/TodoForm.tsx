@@ -21,6 +21,7 @@ import { Category, Todo } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import { useAddTodoMutation, useUpdateTodoMutation } from "@/store/todoAPI";
 import { useEffect } from "react";
+import { Textarea } from "@/components/ui/textarea";
 
 const formSchema = z.object({
   text: z.string().min(1, "Can't add empty todo"),
@@ -124,13 +125,9 @@ const TodoForm = ({
             render={({ field }) => (
               <FormItem className="h-fit flex-1">
                 <FormControl>
-                  <textarea
-                    {...field}
-                    className="h-50 border-1 p-3"
-                    placeholder="Add description..."
-                  >
+                  <Textarea placeholder="Add description..." {...field}>
                     {todo.description}
-                  </textarea>
+                  </Textarea>
                 </FormControl>
                 <FormMessage />
               </FormItem>
