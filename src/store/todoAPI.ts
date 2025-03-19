@@ -35,6 +35,14 @@ const todosAPI = createApi({
       }),
       invalidatesTags: ["Todos"],
     }),
+    updateTodo: builder.mutation<Todo, Omit<Todo, "completed">>({
+      query: ({ text, category, description, id }) => ({
+        url: `/todos/${id}`,
+        method: "PATCH",
+        body: { text, category, description },
+      }),
+      invalidatesTags: ["Todos"],
+    }),
     toggleTodo: builder.mutation<Todo, Pick<Todo, "completed" | "id">>({
       query: ({ id, completed }) => ({
         url: `/todos/${id}`,
@@ -70,6 +78,7 @@ export const {
   useGetTodosQuery,
   useGetTodoByIdQuery,
   useAddTodoMutation,
+  useUpdateTodoMutation,
   useToggleTodoMutation,
   useRemoveTodoMutation,
   useGetCategoriesQuery,

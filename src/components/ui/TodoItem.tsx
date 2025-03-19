@@ -7,7 +7,13 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import { ChevronDown, PenIcon, Trash as CrossIcon, Check } from "lucide-react";
+import {
+  ChevronDown,
+  PenIcon,
+  Trash as CrossIcon,
+  Check,
+  ChevronRight,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useRemoveTodoMutation, useToggleTodoMutation } from "@/store/todoAPI";
 import { useState } from "react";
@@ -95,9 +101,11 @@ const TodoItem = ({
             <CrossIcon />
           </Button>
         </div>
-        <CollapsibleContent className="mt-2 flex gap-2 border-t-1 pt-2 pl-4">
-          <div>&gt;</div>
-          <div>
+        <CollapsibleContent className="mt-2 flex gap-1 border-t-1 border-gray-500 bg-gray-200 p-2 dark:bg-gray-900">
+          <div className="pt-1">
+            <ChevronRight size={16} />
+          </div>
+          <div className="border-l-1 border-dashed border-gray-500 pl-1 text-sm opacity-70">
             {todo?.description || (
               <i className="italic opacity-50">No description...</i>
             )}
