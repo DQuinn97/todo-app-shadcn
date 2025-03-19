@@ -1,6 +1,7 @@
 import { Category, Todo } from "@/lib/types";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 import {
   Collapsible,
   CollapsibleContent,
@@ -8,22 +9,38 @@ import {
 } from "@/components/ui/collapsible";
 import { ChevronDown, PenIcon, Trash as CrossIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useRemoveTodoMutation } from "@/store/todoAPI";
+import { useRemoveTodoMutation, useToggleTodoMutation } from "@/store/todoAPI";
 
 const TodoItem = ({ todo, category }: { todo: Todo; category: Category }) => {
   const [removeTodo] = useRemoveTodoMutation();
+  const [toggleTodo] = useToggleTodoMutation();
   const style = {
     backgroundColor: category.color + "77",
     color: category.color,
   };
-
+  let li_class = todo.completed ? "bg-muted line-through" : "";
+  let text_class = todo.completed ? "line-through text-gray-400" : "";
   return (
-    <li className="border-accent flex items-center justify-center rounded-md border-1 p-3 text-left">
+    <li
+      className={cn(
+        "border-accent flex items-center justify-center rounded-md border-1 p-3 text-left",
+        li_class,
+      )}
+      data-active={todo.completed}
+    >
       <Collapsible className="w-full">
         <div className="flex w-full items-center justify-center gap-2">
-          <Checkbox className="mr-2" />
+          <Checkbox
+            className="mr-2"
+            onClick={() =>
+              toggleTodo({ id: todo.id, completed: !todo.completed })
+            }
+            checked={todo.completed}
+          />
           <CollapsibleTrigger className="OpenTodo line-clamp-1 flex w-full gap-2">
-            <div className="mr-auto line-clamp-1 text-left">{todo.text}</div>
+            <div className={cn("mr-auto line-clamp-1 text-left", text_class)}>
+              {todo.text}
+            </div>
             {todo.category && (
               <Badge className="ml-auto" style={style}>
                 {category.name}
