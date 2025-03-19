@@ -16,7 +16,11 @@ function App() {
    */
 
   const filters = useSelector(getFilters);
-  const { data: todoResponse } = useGetTodosQuery(filters);
+  const {
+    data: todoResponse,
+    isLoading: todoLoading,
+    isError: todoError,
+  } = useGetTodosQuery(filters);
   const { data: categories } = useGetCategoriesQuery();
 
   return (
@@ -29,9 +33,14 @@ function App() {
           categories={categories as Category[]}
         />
       )}
-      {(!todoResponse || !todoResponse.data) && (
+      {todoLoading && (
         <div className="flex h-40 items-center justify-center text-2xl font-semibold text-gray-500">
           No items yet...
+        </div>
+      )}
+      {todoError && (
+        <div className="flex h-40 items-center justify-center text-2xl font-semibold text-gray-500">
+          Something went wrong...
         </div>
       )}
       <TodoStats />

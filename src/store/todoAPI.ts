@@ -12,7 +12,7 @@ const todosAPI = createApi({
   tagTypes: ["Todos"],
   reducerPath: "todosAPI",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3000",
+    baseUrl: "https://recondite-acoustic-agenda.glitch.me/",
   }),
   endpoints: (builder) => ({
     getTodos: builder.query<
