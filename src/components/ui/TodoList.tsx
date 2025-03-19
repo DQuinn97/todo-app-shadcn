@@ -1,4 +1,4 @@
-import { Category, GetTodoResponse, Todo } from "@/lib/types";
+import { Category, type GetTodoResponse } from "@/lib/types";
 import TodoItem from "@/components/ui/TodoItem";
 import Pager from "@/components/ui/Pager";
 
@@ -11,7 +11,7 @@ const TodoList = ({
 }) => {
   return (
     <>
-      <ul className="flex flex-col gap-2">
+      <ul className="mt-5 flex flex-col gap-2">
         {todoResponse?.data.map((todo) => (
           <TodoItem
             key={todo.id}

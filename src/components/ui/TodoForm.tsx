@@ -23,7 +23,7 @@ import { useAddTodoMutation } from "@/store/todoAPI";
 
 const formSchema = z.object({
   text: z.string().min(1, "Can't add empty todo"),
-  category: z.string(),
+  category: z.string().optional(),
   description: z.string(),
 });
 
@@ -42,6 +42,7 @@ const TodoForm = ({ categories }: { categories: Category[] }) => {
     event.preventDefault();
     addTodo(values);
     form.reset();
+    form.setValue("category", "");
   }
 
   return (
@@ -68,6 +69,7 @@ const TodoForm = ({ categories }: { categories: Category[] }) => {
                 <Select
                   defaultValue={field.value}
                   onValueChange={field.onChange}
+                  value={field.value}
                 >
                   <SelectTrigger className="hover:cursor-pointer">
                     <SelectValue placeholder="Category" />

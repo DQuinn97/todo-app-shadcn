@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { useGetTodoCountQuery } from "./todoAPI";
+import { useGetTodoStatsQuery } from "./todoAPI";
 import { RootState } from ".";
 
 const filterSlice = createSlice({
@@ -28,24 +28,10 @@ const filterSlice = createSlice({
       state.filters.amount = action.payload;
       state.filters.page = 1;
     },
-    nextPage: (state) => {
-      const { data: todos } = useGetTodoCountQuery();
-      if (todos && state.filters.page < Math.ceil(todos / state.filters.amount))
-        state.filters.page++;
-    },
-    prevPage: (state) => {
-      if (state.filters.page !== 1) state.filters.page--;
-    },
   },
 });
 
-export const {
-  setCategoryFilter,
-  setStatusFilter,
-  setPage,
-  setAmount,
-  nextPage,
-  prevPage,
-} = filterSlice.actions;
+export const { setCategoryFilter, setStatusFilter, setPage, setAmount } =
+  filterSlice.actions;
 export default filterSlice.reducer;
 export const getFilters = (state: RootState) => state.filterSlice.filters;

@@ -123,23 +123,28 @@
   "categories": [
     {
       "name": "Work",
-      "color": "#f59e0b"
+      "color": "#f59e0b",
+      "id": "9021"
     },
     {
       "name": "Personal",
-      "color": "#ef4444"
+      "color": "#ef4444",
+      "id": "5b93"
     },
     {
       "name": "Shopping",
-      "color": "#3b82f6"
+      "color": "#3b82f6",
+      "id": "1a24"
     },
     {
       "name": "Health",
-      "color": "#10b981"
+      "color": "#10b981",
+      "id": "7fab"
     },
     {
       "name": "Learning",
-      "color": "#8b5cf6"
+      "color": "#8b5cf6",
+      "id": "f327"
     }
   ]
 }

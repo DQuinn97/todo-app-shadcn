@@ -12,7 +12,7 @@ export interface Todo {
   id: string;
   text: string;
   completed: boolean;
-  category: string;
+  category?: string;
   description: string;
 }
 

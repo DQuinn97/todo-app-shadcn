@@ -1,11 +1,12 @@
 import "./App.css";
 import TodoList from "@/components/ui/TodoList";
-import { useGetTodosQuery, useGetCategoriesQuery } from "./store/todoAPI";
-import { Category } from "./lib/types";
+import { useGetTodosQuery, useGetCategoriesQuery } from "@/store/todoAPI";
+import { Category } from "@/lib/types";
 import TodoForm from "@/components/ui/TodoForm";
 import TodoFilter from "@/components/ui/TodoFilter";
-import { getFilters } from "./store/filterSlice";
+import { getFilters } from "@/store/filterSlice";
 import { useSelector } from "react-redux";
+import TodoStats from "@/components/ui/TodoStats";
 
 function App() {
   const filters = useSelector(getFilters);
@@ -27,6 +28,7 @@ function App() {
           No items yet...
         </div>
       )}
+      <TodoStats />
     </>
   );
 }

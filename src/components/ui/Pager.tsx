@@ -5,7 +5,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { getFilters, setAmount } from "@/store/filterSlice";
+import { getFilters, setAmount, setPage } from "@/store/filterSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@/components/ui/button";
 import { GetTodoResponse } from "@/lib/types";
@@ -39,6 +39,7 @@ const Pager = ({ todoResponse }: { todoResponse: GetTodoResponse }) => {
           variant={"secondary"}
           className="border-1 p-3"
           disabled={todoResponse?.first === filters.page}
+          onClick={() => dispatch(setPage(todoResponse.first))}
         >
           First
         </Button>
@@ -46,17 +47,25 @@ const Pager = ({ todoResponse }: { todoResponse: GetTodoResponse }) => {
           variant={"secondary"}
           className="border-1 p-3"
           disabled={todoResponse?.prev === null}
+          onClick={() => dispatch(setPage(todoResponse.prev))}
         >
           Previous
         </Button>
 
         <span className="px-2">
-          Page {filters.page} of {todoResponse?.last}
+          Page{" "}
+          {todoResponse?.prev
+            ? todoResponse.prev + 1
+            : todoResponse.next
+              ? todoResponse.next - 1
+              : " "}{" "}
+          of {todoResponse?.last}
         </span>
         <Button
           variant={"secondary"}
           className="border-1 p-3"
           disabled={todoResponse?.next === null}
+          onClick={() => dispatch(setPage(todoResponse.next))}
         >
           Next
         </Button>
@@ -64,6 +73,7 @@ const Pager = ({ todoResponse }: { todoResponse: GetTodoResponse }) => {
           variant={"secondary"}
           className="border-1 p-3"
           disabled={todoResponse?.last === filters.page}
+          onClick={() => dispatch(setPage(todoResponse.last))}
         >
           Last
         </Button>

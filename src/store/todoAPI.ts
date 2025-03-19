@@ -53,9 +53,12 @@ const todosAPI = createApi({
     getCategories: builder.query<Category[], void>({
       query: () => `/categories`,
     }),
-    getTodoCount: builder.query<number, void>({
+    getTodoStats: builder.query<{ completed: number; total: number }, void>({
       query: () => `/todos`,
-      transformResponse: (response: Todo[]) => response.length,
+      transformResponse: (response: Todo[]) => ({
+        completed: response.filter((todo) => todo.completed).length,
+        total: response.length,
+      }),
     }),
   }),
 });
@@ -69,5 +72,5 @@ export const {
   useToggleTodoMutation,
   useRemoveTodoMutation,
   useGetCategoriesQuery,
-  useGetTodoCountQuery,
+  useGetTodoStatsQuery,
 } = todosAPI;
