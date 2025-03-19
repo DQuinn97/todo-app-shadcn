@@ -12,7 +12,7 @@ const todosAPI = createApi({
   tagTypes: ["Todos"],
   reducerPath: "todosAPI",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://qr-todo-app-shadcn.glitch.me",
+    baseUrl: "localhost:3000",
   }),
   endpoints: (builder) => ({
     getTodos: builder.query<
