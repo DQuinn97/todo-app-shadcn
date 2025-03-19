@@ -1,28 +1,32 @@
-import { Category, Todo } from "@/lib/types";
+import { Category, GetTodoResponse, Todo } from "@/lib/types";
 import TodoItem from "@/components/ui/TodoItem";
+import Pager from "@/components/ui/Pager";
 
 const TodoList = ({
-  todos,
+  todoResponse,
   categories,
 }: {
-  todos: Todo[];
+  todoResponse: GetTodoResponse;
   categories: Category[];
 }) => {
   return (
-    <ul className="flex flex-col gap-2">
-      {todos?.map((todo) => (
-        <TodoItem
-          key={todo.id}
-          todo={todo}
-          category={
-            categories?.find((c) => c.name === todo.category) || {
-              name: "",
-              color: "",
+    <>
+      <ul className="flex flex-col gap-2">
+        {todoResponse?.data.map((todo) => (
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            category={
+              categories?.find((c) => c.name === todo.category) || {
+                name: "",
+                color: "",
+              }
             }
-          }
-        />
-      ))}
-    </ul>
+          />
+        ))}
+      </ul>
+      <Pager todoResponse={todoResponse} />
+    </>
   );
 };
 export default TodoList;

@@ -1,6 +1,3 @@
-import { set, z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import {
   getFilters,
   setCategoryFilter,
@@ -15,30 +12,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from "@/components/ui/form";
+
 import { Category } from "@/lib/types";
 
-const formSchema = z.object({
-  categoryFilter: z.string(),
-  statusFilter: z.string(),
-});
-
-const FilterForm = ({ categories }: { categories: Category[] }) => {
+const TodoFilter = ({ categories }: { categories: Category[] }) => {
   const filters = useSelector(getFilters);
   const dispatch = useDispatch();
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      categoryFilter: filters.categoryFilter || "All",
-      statusFilter: filters.statusFilter || "All",
-    },
-  });
 
   return (
     <div className="flex gap-2">
@@ -74,4 +53,4 @@ const FilterForm = ({ categories }: { categories: Category[] }) => {
     </div>
   );
 };
-export default FilterForm;
+export default TodoFilter;

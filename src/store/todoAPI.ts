@@ -1,4 +1,4 @@
-import { Category, type Todo } from "@/lib/types";
+import { Category, type GetTodoResponse, type Todo } from "@/lib/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const todosAPI = createApi({
@@ -9,7 +9,7 @@ const todosAPI = createApi({
   }),
   endpoints: (builder) => ({
     getTodos: builder.query<
-      Todo[],
+      GetTodoResponse,
       {
         categoryFilter?: string;
         statusFilter?: string;
