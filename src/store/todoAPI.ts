@@ -1,5 +1,12 @@
 import { Category, type GetTodoResponse, type Todo } from "@/lib/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { toast } from "sonner";
+
+/**
+ * API for fetching todos
+ * Queries are made specifically to work with the json-server query options.
+ * Any weirdness can be blamed on json-server...
+ */
 
 const todosAPI = createApi({
   tagTypes: ["Todos"],
@@ -33,6 +40,11 @@ const todosAPI = createApi({
         method: "POST",
         body: { text, completed: false, category, description },
       }),
+
+      transformResponse: (response: Todo) => {
+        toast.success("Todo added successfully", { richColors: true });
+        return response;
+      },
       invalidatesTags: ["Todos"],
     }),
     updateTodo: builder.mutation<Todo, Omit<Todo, "completed">>({
@@ -41,6 +53,10 @@ const todosAPI = createApi({
         method: "PATCH",
         body: { text, category, description },
       }),
+      transformResponse: (response: Todo) => {
+        toast.success("Todo updated!", { richColors: true });
+        return response;
+      },
       invalidatesTags: ["Todos"],
     }),
     toggleTodo: builder.mutation<Todo, Pick<Todo, "completed" | "id">>({
@@ -56,16 +72,30 @@ const todosAPI = createApi({
         url: `/todos/${id}`,
         method: "DELETE",
       }),
+      transformResponse: (response: Todo) => {
+        toast.warning(`Todo deleted successfully!`, {
+          richColors: true,
+        });
+        return response;
+      },
       invalidatesTags: ["Todos"],
     }),
     getCategories: builder.query<Category[], void>({
       query: () => `/categories`,
     }),
-    getTodoStats: builder.query<{ completed: number; total: number }, void>({
+    getTodoStats: builder.query<
+      { completed: number; total: number; active: number; percentage: number },
+      void
+    >({
       query: () => `/todos`,
       transformResponse: (response: Todo[]) => ({
         completed: response.filter((todo) => todo.completed).length,
+        active: response.filter((todo) => !todo.completed).length,
         total: response.length,
+        percentage: Math.round(
+          (response.filter((todo) => todo.completed).length / response.length) *
+            100,
+        ),
       }),
       providesTags: ["Todos"],
     }),

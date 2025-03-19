@@ -9,6 +9,12 @@ import { useSelector } from "react-redux";
 import TodoStats from "@/components/ui/TodoStats";
 
 function App() {
+  /**
+   * Todos get fetched on App level, because json-server is not great and this prevents slow loading and errors.
+   * Same with categories.
+   * I know this defeats the point of React Toolkit being able to call hooks from within components, but this seemed to work just a little smoother.
+   */
+
   const filters = useSelector(getFilters);
   const { data: todoResponse } = useGetTodosQuery(filters);
   const { data: categories } = useGetCategoriesQuery();

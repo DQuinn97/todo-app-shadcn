@@ -1,7 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { useGetTodoStatsQuery } from "./todoAPI";
 import { RootState } from ".";
-
+/**
+ * This file contains the Redux slice for the filters in the todos list.
+ * The filters include a category filter, a status filter.
+ * Page and amount, used for pagination, are considered filters too for simplicity with json-server.
+ */
 const filterSlice = createSlice({
   name: "filters",
   initialState: {

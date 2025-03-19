@@ -119,7 +119,7 @@
     @apply bg-background text-foreground;
   }
 }
-
+/* Dropdown icon rotation */
 .OpenTodo[data-state="open"] > .OpenTodoIcon {
   @apply rotate-180;
 }

@@ -1,4 +1,5 @@
 import { ModeToggle } from "@/components/ui/mode-toggle";
+import { Toaster } from "@/components/ui/sonner";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -7,7 +8,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <h1 className="mr-auto text-2xl font-bold">Todo App</h1>
         <ModeToggle />
       </header>
-      <main>{children}</main>
+      <main>
+        {children}
+        <Toaster />
+      </main>
     </>
   );
 };

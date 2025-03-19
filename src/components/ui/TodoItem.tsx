@@ -7,16 +7,9 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import {
-  ChevronDown,
-  PenIcon,
-  Trash as CrossIcon,
-  Check,
-  ChevronRight,
-} from "lucide-react";
+import { ChevronDown, PenIcon, Trash, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useRemoveTodoMutation, useToggleTodoMutation } from "@/store/todoAPI";
-import { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -34,10 +27,11 @@ const TodoItem = ({
   todo: Todo;
   categories: Category[];
 }) => {
-  const [editing, setEditing] = useState(false);
   const [removeTodo] = useRemoveTodoMutation();
   const [toggleTodo] = useToggleTodoMutation();
-  let category = categories.find((c) => c.name === todo.category);
+  let category = categories?.find((c) => c.name === todo.category);
+
+  // dynamic styles workaround so Tailwindcss can still read them
   const style = {
     backgroundColor: category?.color + "77",
     color: category?.color,
@@ -98,7 +92,7 @@ const TodoItem = ({
             onClick={() => removeTodo(todo.id)}
             className="hover:cursor-pointer"
           >
-            <CrossIcon />
+            <Trash />
           </Button>
         </div>
         <CollapsibleContent className="mt-2 flex gap-1 border-t-1 border-gray-500 bg-gray-200 p-2 dark:bg-gray-900">
