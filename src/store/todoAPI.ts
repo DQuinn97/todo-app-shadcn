@@ -59,6 +59,7 @@ const todosAPI = createApi({
         completed: response.filter((todo) => todo.completed).length,
         total: response.length,
       }),
+      providesTags: ["Todos"],
     }),
   }),
 });

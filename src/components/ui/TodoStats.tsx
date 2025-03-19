@@ -11,12 +11,8 @@ const TodoStats = () => {
           <div>Completed: {stats?.data?.completed} todos</div>
           <div>
             {" "}
-            {Math.round(
-              ((stats?.data?.total - stats?.data?.completed) /
-                stats?.data?.total) *
-                100,
-            )}
-            % completed
+            {Math.round((stats?.data?.completed / stats?.data?.total) * 100)}%
+            completed
           </div>
         </>
       )}

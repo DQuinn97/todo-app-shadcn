@@ -52,7 +52,11 @@ const TodoItem = ({ todo, category }: { todo: Todo; category: Category }) => {
               <ChevronDown size={16} />
             </span>
           </CollapsibleTrigger>
-          <Button variant="ghost" className="hover:cursor-pointer">
+          <Button
+            variant="ghost"
+            className="hover:cursor-pointer"
+            onClick={() => {}}
+          >
             <PenIcon />
           </Button>
           <Button
