@@ -16,7 +16,7 @@ const todosAPI = createApi({
   }),
   endpoints: (builder) => ({
     getTodos: builder.query<
-      any,
+      GetTodoResponse,
       {
         categoryFilter?: string;
         statusFilter?: string;
