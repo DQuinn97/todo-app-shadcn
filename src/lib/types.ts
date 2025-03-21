@@ -1,8 +1,8 @@
 export interface GetTodoResponse {
-  first: number;
-  prev: number | null;
-  next: number | null;
-  last: number;
+  '"first"': number;
+  '"prev"': number | null;
+  '"next"': number | null;
+  '"last"': number;
   pages: number;
   items: number;
   data: Todo[];

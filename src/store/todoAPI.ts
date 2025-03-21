@@ -12,11 +12,11 @@ const todosAPI = createApi({
   tagTypes: ["Todos"],
   reducerPath: "todosAPI",
   baseQuery: fetchBaseQuery({
-    baseUrl: "localhost:3000",
+    baseUrl: "https://qr-todo-app-shadcn.glitch.me",
   }),
   endpoints: (builder) => ({
     getTodos: builder.query<
-      GetTodoResponse,
+      any,
       {
         categoryFilter?: string;
         statusFilter?: string;
@@ -25,7 +25,29 @@ const todosAPI = createApi({
       }
     >({
       query: ({ categoryFilter, statusFilter, page, amount }) =>
-        `/todos?${categoryFilter ? `category=${categoryFilter}&` : ""}${statusFilter ? `completed=${statusFilter == "Done" ? true : false}&` : ""}${page ? `_page=${page}&` : ""}${amount ? `_per_page=${amount}` : ""}`,
+        `/todos?${categoryFilter ? `category=${categoryFilter}&` : ""}${statusFilter ? `completed=${statusFilter == "Done" ? true : false}&` : ""}${page ? `_page=${page}&` : ""}${amount ? `_limit=${amount}` : ""}`,
+      transformResponse: async (response: Todo[], meta) => {
+        const pageRegex = /_page=\d+/gm;
+        const relRegex = /rel="\w+"/gm;
+
+        let link = meta?.response?.headers?.get("Link")?.split(",");
+
+        let pageData = link
+          ?.map((l) => {
+            let relMatch = l.match(relRegex);
+            let pageMatch = l.match(pageRegex);
+
+            let rel = relMatch ? relMatch[0].replace("rel=", "") : "";
+            let page = pageMatch ? pageMatch[0].replace("_page=", "") : "";
+            const pageData = {
+              [`${rel}`]: page ? page : 1,
+            };
+
+            return pageData;
+          })
+          .reduce((a, b) => ({ ...a, ...b }), {});
+        return { ...pageData, data: response } as any;
+      },
       providesTags: ["Todos"],
     }),
     getTodoById: builder.query<Todo, Todo["id"]>({

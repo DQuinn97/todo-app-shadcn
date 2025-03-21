@@ -22,6 +22,7 @@ function App() {
     isError: todoError,
   } = useGetTodosQuery(filters);
   const { data: categories } = useGetCategoriesQuery();
+  console.log(todoResponse);
 
   return (
     <>

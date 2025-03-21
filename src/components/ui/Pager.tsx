@@ -13,6 +13,9 @@ const Pager = ({ todoResponse }: { todoResponse: GetTodoResponse }) => {
   const filters = useSelector(getFilters);
   const dispatch = useDispatch();
   const pageQty = [5, 10, 15, 20];
+  console.log("this", todoResponse);
+  console.log(todoResponse[`"last"`]);
+
   return (
     <div className="mt-5 flex h-8 w-full items-center justify-between">
       <div className="flex items-center justify-between gap-5">
@@ -38,42 +41,42 @@ const Pager = ({ todoResponse }: { todoResponse: GetTodoResponse }) => {
         <Button
           variant={"secondary"}
           className="border-1 p-3"
-          disabled={todoResponse?.first === filters.page}
-          onClick={() => dispatch(setPage(todoResponse.first))}
+          disabled={todoResponse[`"first"`] == filters.page}
+          onClick={() => dispatch(setPage(todoResponse[`"first"`]))}
         >
           First
         </Button>
         <Button
           variant={"secondary"}
           className="border-1 p-3"
-          disabled={todoResponse?.prev === null}
-          onClick={() => dispatch(setPage(todoResponse.prev))}
+          disabled={todoResponse[`"prev"`] === undefined}
+          onClick={() => dispatch(setPage(todoResponse[`"prev"`]))}
         >
           Previous
         </Button>
 
         <span className="px-2">
           Page{" "}
-          {todoResponse?.prev
-            ? todoResponse.prev + 1
-            : todoResponse.next
-              ? todoResponse.next - 1
+          {todoResponse[`"prev"`]
+            ? +todoResponse[`"prev"`] + 1
+            : todoResponse[`"next"`]
+              ? +todoResponse[`"next"`] - 1
               : " "}{" "}
-          of {todoResponse?.last}
+          of {todoResponse[`"last"`]}
         </span>
         <Button
           variant={"secondary"}
           className="border-1 p-3"
-          disabled={todoResponse?.next === null}
-          onClick={() => dispatch(setPage(todoResponse.next))}
+          disabled={todoResponse[`"next"`] === undefined}
+          onClick={() => dispatch(setPage(todoResponse[`"next"`]))}
         >
           Next
         </Button>
         <Button
           variant={"secondary"}
           className="border-1 p-3"
-          disabled={todoResponse?.last === filters.page}
-          onClick={() => dispatch(setPage(todoResponse.last))}
+          disabled={todoResponse[`"last"`] == filters.page}
+          onClick={() => dispatch(setPage(todoResponse[`"last"`]))}
         >
           Last
         </Button>
