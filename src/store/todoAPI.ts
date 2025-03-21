@@ -46,7 +46,7 @@ const todosAPI = createApi({
             return pageData;
           })
           .reduce((a, b) => ({ ...a, ...b }), {});
-        return { ...pageData, data: response } as any;
+        return { ...pageData, data: response } as GetTodoResponse;
       },
       providesTags: ["Todos"],
     }),
